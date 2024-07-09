@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
             PruebasClasesTheme {
                 //Characterscreen()
                 val nav = rememberNavController()
-                NavHost(navController = nav, startDestination = "p1") {
+                NavHost(navController = nav, startDestination = NavMenu.p1.option) {
                     composable("p1") { Pantalla1(nav) }
                     composable("p2") { Pantalla2(nav) }
                     composable("p3") { Pantalla3(nav) }
