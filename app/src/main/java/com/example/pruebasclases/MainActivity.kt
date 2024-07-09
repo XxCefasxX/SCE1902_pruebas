@@ -28,6 +28,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.pruebasclases.ui.theme.PruebasClasesTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +38,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PruebasClasesTheme {
-                Characterscreen()
+                //Characterscreen()
+                val nav = rememberNavController()
+                NavHost(navController = nav, startDestination = "p1") {
+                    composable("p1") { Pantalla1(nav) }
+                    composable("p2") { Pantalla2(nav) }
+                    composable("p3") { Pantalla3(nav) }
+                }
 
             }
         }
@@ -57,8 +66,8 @@ fun MyApp() {
 
     // Función para agregar un nuevo elemento
     fun addItem(item: String) {
-        Log.i("MyApp","sasas")
-           items.add(item)
+        Log.i("MyApp", "sasas")
+        items.add(item)
     }
 
     Column(
