@@ -41,9 +41,10 @@ class MainActivity : ComponentActivity() {
                 //Characterscreen()
                 val nav = rememberNavController()
                 NavHost(navController = nav, startDestination = NavMenu.p1.option) {
-                    composable("p1") { Pantalla1(nav) }
+                    composable("p1") { Characterscreen(nav = nav) }
                     composable("p2") { Pantalla2(nav) }
                     composable("p3") { Pantalla3(nav) }
+                    composable("p4") { CharacterScreen() }
                 }
 
             }

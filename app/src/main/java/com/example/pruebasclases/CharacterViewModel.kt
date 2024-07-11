@@ -5,6 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -40,14 +42,19 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
     val characters: StateFlow<List<Character>> = _characters
 
 
+    private val _character = MutableLiveData<Character>()
+    val character: LiveData<Character> = _character
 
-    init {
-        fetchCharacters()
-    }
 
-    private fun fetchCharacters() = viewModelScope.launch {
+
+     fun fetchCharacters() = viewModelScope.launch {
         val userList = repository.getCharacters()
         _characters.value = userList
+    }
+
+    fun getCharacter(character_id:String) = viewModelScope.launch {
+        val _details = repository.getCharacterDetails(character_id)
+        _character.value = _details
     }
 
 }

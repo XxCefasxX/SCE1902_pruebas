@@ -11,3 +11,8 @@ data class Character(
     val name: String,
     val _id: Int,
     @SerializedName("imageUrl")val img: String)
+
+
+data class DetailsResponse(
+    @SerializedName("data") val Details: Character
+)

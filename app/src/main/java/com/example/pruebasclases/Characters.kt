@@ -3,6 +3,7 @@ package com.example.pruebasclases
 import android.graphics.Color
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -22,10 +23,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.material3.Card
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 
+
 @Composable
-fun Characterscreen(userViewModel: CharacterViewModel = viewModel()) {
+fun Characterscreen(userViewModel: CharacterViewModel = viewModel(), nav: NavHostController) {
+    userViewModel.fetchCharacters()
     val characters by userViewModel.characters.collectAsState()
     Log.i("Characterscreen", characters.toString())
     Column {
@@ -36,7 +41,7 @@ fun Characterscreen(userViewModel: CharacterViewModel = viewModel()) {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(characters) { character ->
-                CharacterItem(character = character)
+                CharacterItem(character = character, nav)
             }
         }
     }
@@ -45,13 +50,16 @@ fun Characterscreen(userViewModel: CharacterViewModel = viewModel()) {
 }
 
 @Composable
-fun CharacterItem(character: Character) {
+fun CharacterItem(character: Character, nav: NavHostController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(1f) // Hacer que la altura sea igual al ancho
-            .padding(8.dp),
-    ){
+            .padding(8.dp)
+            .clickable {
+                nav.navigate("p4")
+            }
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -63,6 +71,15 @@ fun CharacterItem(character: Character) {
             )
             Text("Hello World", color = androidx.compose.ui.graphics.Color.Red)
         }
+
     }
+
+}
+
+@Composable
+fun CharacterScreen(userViewModel: CharacterViewModel = viewModel()) {
+    userViewModel.getCharacter("342")
+    val character by userViewModel.character.observeAsState()
+    character?.let { Text(text = it.name) }
 
 }
