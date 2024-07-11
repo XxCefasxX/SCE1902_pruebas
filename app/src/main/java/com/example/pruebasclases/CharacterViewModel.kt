@@ -46,10 +46,13 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
     val character: LiveData<Character> = _character
 
 
+    init {
+        fetchCharacters()
+    }
 
      fun fetchCharacters() = viewModelScope.launch {
-        val userList = repository.getCharacters()
-        _characters.value = userList
+        val charList = repository.getCharacters()
+        _characters.value = charList
     }
 
     fun getCharacter(character_id:String) = viewModelScope.launch {

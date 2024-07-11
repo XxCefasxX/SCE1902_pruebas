@@ -44,7 +44,10 @@ class MainActivity : ComponentActivity() {
                     composable("p1") { Characterscreen(nav = nav) }
                     composable("p2") { Pantalla2(nav) }
                     composable("p3") { Pantalla3(nav) }
-                    composable("p4") { CharacterScreen() }
+                    composable("p4/{character_id}") { parameter ->
+                        val character_id: String? = parameter.arguments?.getString("character_id")
+                        CharacterScreen(character_id = character_id!!)
+                    }
                 }
 
             }

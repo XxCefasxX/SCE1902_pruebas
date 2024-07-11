@@ -29,9 +29,8 @@ import coil.compose.AsyncImage
 
 
 @Composable
-fun Characterscreen(userViewModel: CharacterViewModel = viewModel(), nav: NavHostController) {
-    userViewModel.fetchCharacters()
-    val characters by userViewModel.characters.collectAsState()
+fun Characterscreen(charactersViewModel: CharacterViewModel = viewModel(), nav: NavHostController) {
+    val characters by charactersViewModel.characters.collectAsState()
     Log.i("Characterscreen", characters.toString())
     Column {
         LazyVerticalGrid(
@@ -57,7 +56,7 @@ fun CharacterItem(character: Character, nav: NavHostController) {
             .aspectRatio(1f) // Hacer que la altura sea igual al ancho
             .padding(8.dp)
             .clickable {
-                nav.navigate("p4")
+                nav.navigate("p4/${character._id}")
             }
     ) {
         Column(
@@ -69,7 +68,7 @@ fun CharacterItem(character: Character, nav: NavHostController) {
                 model = character.img,
                 contentDescription = null,
             )
-            Text("Hello World", color = androidx.compose.ui.graphics.Color.Red)
+            Text(character.name, color = androidx.compose.ui.graphics.Color.Red)
         }
 
     }
@@ -77,9 +76,9 @@ fun CharacterItem(character: Character, nav: NavHostController) {
 }
 
 @Composable
-fun CharacterScreen(userViewModel: CharacterViewModel = viewModel()) {
-    userViewModel.getCharacter("342")
-    val character by userViewModel.character.observeAsState()
+fun CharacterScreen(charactersViewModel: CharacterViewModel = viewModel(),character_id:String) {
+    charactersViewModel.getCharacter(character_id)
+    val character by charactersViewModel.character.observeAsState()
     character?.let { Text(text = it.name) }
 
 }
