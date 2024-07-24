@@ -51,6 +51,8 @@ android {
 
 dependencies {
 
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.35.1-alpha")
+
     implementation ("androidx.compose.runtime:runtime-livedata:1.3.3")
 
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

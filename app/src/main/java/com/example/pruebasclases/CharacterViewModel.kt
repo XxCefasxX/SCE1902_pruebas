@@ -60,4 +60,9 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
         _character.value = _details
     }
 
+    fun SearchCharacter(character_name:String) = viewModelScope.launch {
+        val charList = repository.SearchChracterName(character_name)
+        _characters.value = charList
+    }
+
 }

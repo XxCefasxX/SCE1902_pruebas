@@ -10,4 +10,8 @@ class CharacterRepository(private val apiService: ApiService) {
         return apiService.getCharacterDetails(character_id).Details
     }
 
+    suspend fun SearchChracterName(character_id:String): List<Character> {
+        return apiService.SearchCHaracter(character_id).Characters
+    }
+
 }

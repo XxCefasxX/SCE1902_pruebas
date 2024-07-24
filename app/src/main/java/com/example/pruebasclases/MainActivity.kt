@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,11 +44,9 @@ class MainActivity : ComponentActivity() {
                 val nav = rememberNavController()
                 NavHost(navController = nav, startDestination = NavMenu.p1.option) {
                     composable("p1") { Characterscreen(nav = nav) }
-                    composable("p2") { Pantalla2(nav) }
-                    composable("p3") { Pantalla3(nav) }
                     composable("p4/{character_id}") { parameter ->
                         val character_id: String? = parameter.arguments?.getString("character_id")
-                        CharacterScreen(character_id = character_id!!)
+                        CharacterScreen(character_id = character_id!!,nav = nav)
                     }
                 }
 
