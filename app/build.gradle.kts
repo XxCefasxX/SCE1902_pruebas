@@ -51,17 +51,22 @@ android {
 
 dependencies {
 
-    implementation ("com.google.accompanist:accompanist-navigation-animation:0.35.1-alpha")
 
-    implementation ("androidx.compose.runtime:runtime-livedata:1.3.3")
 
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("androidx.compose.material:material:1.0.0")
 
-    implementation ("io.coil-kt:coil-compose:2.0.0")
-    implementation ("com.google.accompanist:accompanist-flowlayout:0.25.1")
+
+    implementation("com.google.accompanist:accompanist-navigation-animation:0.35.1-alpha")
+
+    implementation("androidx.compose.runtime:runtime-livedata:1.3.3")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.25.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
     implementation("androidx.core:core-ktx:1.13.1")

@@ -1,5 +1,6 @@
 package com.example.pruebasclases
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -13,6 +14,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -40,18 +50,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PruebasClasesTheme {
-                //Characterscreen()
-                val nav = rememberNavController()
-                NavHost(navController = nav, startDestination = NavMenu.p1.option) {
-                    composable("p1") { Characterscreen(nav = nav) }
-                    composable("p4/{character_id}") { parameter ->
-                        val character_id: String? = parameter.arguments?.getString("character_id")
-                        CharacterScreen(character_id = character_id!!,nav = nav)
-                    }
-                }
-
+                navbar()
             }
         }
+    }
+}
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+fun navbar() {
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = { BottomNavigationBar(navController = navController) }
+    ) {
+        NavGraph(navController = navController)
     }
 }
 

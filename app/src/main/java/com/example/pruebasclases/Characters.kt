@@ -115,7 +115,7 @@ fun CharacterScreen(
             AsyncImage(
                 model = it.img,
                 contentDescription = "",
-                modifier = Modifier.clickable { nav.navigate("p1") })
+                modifier = Modifier.clickable { nav.navigate("home") })
             Text(text = it.name)
         }
     }
